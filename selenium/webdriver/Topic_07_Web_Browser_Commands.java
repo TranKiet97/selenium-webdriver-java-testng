@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.logging.LogType;
@@ -49,10 +50,10 @@ public class Topic_07_Web_Browser_Commands {
 		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
 		driver.manage().timeouts().setScriptTimeout(15, TimeUnit.SECONDS);
 		
-		org.openqa.selenium.Point point = driver.manage().window().getPosition();
+		Point point = driver.manage().window().getPosition();
 		point.getX();
 		point.getY();
-		driver.manage().window().setPosition(new org.openqa.selenium.Point(1990,1987));
+		driver.manage().window().setPosition(new Point(1990,1987));
 		
 		Dimension dimension = driver.manage().window().getSize();
 		dimension.getHeight();
@@ -72,12 +73,7 @@ public class Topic_07_Web_Browser_Commands {
 	}
 
 	@Test
-	public void TC_02_Element() {
-		
-	}
-	
-	@Test
-	public void TC_03_Tips() {
+	public void TC_02_Tips() {
 //		Nhóm 1 - hàm tương tác
 		driver.findElement(By.id("")).sendKeys("");
 //		Nhóm 2 - hàm lấy dữ liệu
