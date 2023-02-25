@@ -186,7 +186,6 @@ public class Topic_10_Web_Element_Exercise {
 		try {
 			Thread.sleep(timeout*1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
