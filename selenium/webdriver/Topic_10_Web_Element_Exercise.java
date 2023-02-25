@@ -3,6 +3,7 @@ package webdriver;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -14,7 +15,8 @@ public class Topic_10_Web_Element_Exercise {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
-
+	JavascriptExecutor	jsExecutor;
+	
 	@BeforeClass
 	public void beforeClass() {
 		if (osName.contains("Windows")) {
@@ -26,6 +28,8 @@ public class Topic_10_Web_Element_Exercise {
 		}
 
 		driver = new ChromeDriver();
+		
+		jsExecutor = (JavascriptExecutor) driver;
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		
@@ -110,10 +114,13 @@ public class Topic_10_Web_Element_Exercise {
 	public void TC_04_Mailchimp() {
 		driver.get("https://login.mailchimp.com/signup");
 		
-		driver.findElement(By.xpath("//div[@id='onetrust-close-btn-container']//button[@aria-label='Close']")).click();
+//		driver.findElement(By.xpath("//div[@id='onetrust-close-btn-container']//button[@aria-label='Close']")).click();		Không nên dùng cách này vì khi element không xuất hiện thì testcase sẽ fail
 		
 		driver.findElement(By.id("email")).sendKeys("Automation@gmail.com");
 		driver.findElement(By.id("new_password")).sendKeys("");
+		
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.id("create-account-enabled")));
+		sleepInSecond(1);
 		driver.findElement(By.id("create-account-enabled")).click();
 		
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='lowercase-char not-completed']/span")).getText(), "One lowercase character");
@@ -124,6 +131,9 @@ public class Topic_10_Web_Element_Exercise {
 		
 		driver.findElement(By.id("new_password")).clear();
 		driver.findElement(By.id("new_password")).sendKeys("aaa");
+
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.id("create-account-enabled")));
+		sleepInSecond(1);
 		driver.findElement(By.id("create-account-enabled")).click();
 		
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='lowercase-char completed']/span")).getText(), "One lowercase character");
@@ -134,6 +144,9 @@ public class Topic_10_Web_Element_Exercise {
 		
 		driver.findElement(By.id("new_password")).clear();
 		driver.findElement(By.id("new_password")).sendKeys("AAA");
+
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.id("create-account-enabled")));
+		sleepInSecond(1);
 		driver.findElement(By.id("create-account-enabled")).click();
 		
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='lowercase-char not-completed']/span")).getText(), "One lowercase character");
@@ -144,6 +157,9 @@ public class Topic_10_Web_Element_Exercise {
 		
 		driver.findElement(By.id("new_password")).clear();
 		driver.findElement(By.id("new_password")).sendKeys("123");
+
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.id("create-account-enabled")));
+		sleepInSecond(1);
 		driver.findElement(By.id("create-account-enabled")).click();
 		
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='lowercase-char not-completed']/span")).getText(), "One lowercase character");
@@ -154,6 +170,9 @@ public class Topic_10_Web_Element_Exercise {
 		
 		driver.findElement(By.id("new_password")).clear();
 		driver.findElement(By.id("new_password")).sendKeys("#@$");
+
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.id("create-account-enabled")));
+		sleepInSecond(1);
 		driver.findElement(By.id("create-account-enabled")).click();
 		
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='lowercase-char not-completed']/span")).getText(), "One lowercase character");
@@ -164,6 +183,9 @@ public class Topic_10_Web_Element_Exercise {
 	
 		driver.findElement(By.id("new_password")).clear();
 		driver.findElement(By.id("new_password")).sendKeys("12345678");
+
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.id("create-account-enabled")));
+		sleepInSecond(1);
 		driver.findElement(By.id("create-account-enabled")).click();
 		
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='lowercase-char not-completed']/span")).getText(), "One lowercase character");
@@ -174,6 +196,10 @@ public class Topic_10_Web_Element_Exercise {
 		
 		driver.findElement(By.id("new_password")).clear();
 		driver.findElement(By.id("new_password")).sendKeys("Q123ab@#$");
+		
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.id("create-account-enabled")));
+		sleepInSecond(1);
+		driver.findElement(By.id("create-account-enabled")).click();
 		
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='lowercase-char completed']/span")).getText(), "");
 		Assert.assertEquals(driver.findElement(By.xpath("//li[@class='uppercase-char completed']/span")).getText(), "");
