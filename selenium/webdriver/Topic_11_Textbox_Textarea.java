@@ -7,6 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -18,11 +21,16 @@ public class Topic_11_Textbox_Textarea {
 	String osName = System.getProperty("os.name");
 	
 	Random rand = new Random();
+	
+	WebDriverWait explicitWait;
+	
 	String emailAddress = "Automation" + rand.nextInt(99999) + "@gmail.com";
 	String firstname = "John";
 	String lastname = "Wick";
 	String fullname = firstname + " " + lastname;
 	String password = "123456789";
+	
+	
 
 	@BeforeClass
 	public void beforeClass() {
@@ -35,6 +43,11 @@ public class Topic_11_Textbox_Textarea {
 		}
 
 		driver = new ChromeDriver();
+		
+		// Apply cho trạng thái của element: hiển thị/ không hiển thị/ presence/ staleness
+		explicitWait = new WebDriverWait(driver, 30);
+		
+		// Apply cho việc tìm element (findElement(), findElements())
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
@@ -66,6 +79,7 @@ public class Topic_11_Textbox_Textarea {
 		driver.findElement(By.cssSelector("a.skip-account>span.label")).click();
 		driver.findElement(By.cssSelector("a[title='Log Out']")).click();
 		
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.page-title img")));
 		Assert.assertTrue(driver.findElement(By.cssSelector("div.page-title img")).isDisplayed());
 	}
 
