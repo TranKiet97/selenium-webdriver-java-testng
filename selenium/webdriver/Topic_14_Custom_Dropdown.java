@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 //import org.openqa.selenium.firefox.FirefoxDriver;
@@ -39,12 +40,16 @@ public class Topic_14_Custom_Dropdown {
 		speedItem = "Medium";
 	}
 
-	// @Test
+	@Test
 	public void TC_01_JQuery() {
 		driver.get("https://jqueryui.com/resources/demos/selectmenu/default.html");
 		// Chọn item cho speed dropdown
 		selectItemInDropdown("span#speed-button", "ul#speed-menu div[role='option']", speedItem);
 		Assert.assertEquals(driver.findElement(By.cssSelector("span#speed-button>span.ui-selectmenu-text")).getText(), speedItem);
+		
+		// Chọn item cho number dropdown
+		selectItemInDropdown("span#number-button", "ul#number-menu div[role='option']", "19");
+		Assert.assertEquals(driver.findElement(By.cssSelector("span#number-button>span.ui-selectmenu-text")).getText(), "19");
 	}
 	
 	// @Test
@@ -79,7 +84,7 @@ public class Topic_14_Custom_Dropdown {
 		Assert.assertEquals(driver.findElement(By.cssSelector("li.dropdown-toggle")).getText(), "Third Option");	
 	}
 	
-	@Test
+	// @Test
 	public void TC_04_Editable() {
 		driver.get("https://react.semantic-ui.com/maximize/dropdown-example-search-selection/");
 		enterAndSelectItemInDropdown("input.search", "div.item>span", "Argentina");
@@ -100,11 +105,11 @@ public class Topic_14_Custom_Dropdown {
 		//	Locator phải lấy để đại diện cho tất cả item	
 		//	explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
 		//	List<WebElement>	speedDropdownItems = driver.findElements(By.cssSelector(allItemCss));
-		List<WebElement>	speedDropdownItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
-		for (WebElement speedItem : speedDropdownItems) {
-			if(speedItem.getText().trim().equals(expectedTextItem)) {
-				sleepInSecond(1);
-				speedItem.click();
+		List<WebElement>	DropdownItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
+		for (WebElement Item : DropdownItems) {
+			if(Item.getText().trim().equals(expectedTextItem)) {
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Item);
+				Item.click();
 				break;
 			}
 		}
@@ -117,11 +122,11 @@ public class Topic_14_Custom_Dropdown {
 		//	Locator phải lấy để đại diện cho tất cả item	
 		//	explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
 		//	List<WebElement>	speedDropdownItems = driver.findElements(By.cssSelector(allItemCss));
-		List<WebElement>	speedDropdownItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
-		for (WebElement speedItem : speedDropdownItems) {
-			if(speedItem.getText().trim().equals(expectedTextItem)) {
-				sleepInSecond(1);
-				speedItem.click();
+		List<WebElement>	DropdownItems = explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(allItemCss)));
+		for (WebElement Item : DropdownItems) {
+			if(Item.getText().trim().equals(expectedTextItem)) {
+				((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Item);
+				Item.click();
 				break;
 			}
 		}
