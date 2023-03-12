@@ -37,7 +37,7 @@ public class Topic_17_Alert {
 		driver.manage().window().maximize();
 	}
 
-	// @Test
+	@Test
 	public void TC_01_Accept_Alert() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
