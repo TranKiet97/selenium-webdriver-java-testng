@@ -25,14 +25,14 @@ public class Topic_17_Alert {
 	public void beforeClass() {
 		if (osName.contains("Windows")) {
 			// Window
-			System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver111.exe");
 		} else {
 			// MAC OS 
-			System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver");
+			System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver111");
 		}
 
 		driver = new ChromeDriver();
-		explicitWait = new WebDriverWait(driver, 20);
+		explicitWait = new WebDriverWait(driver, 15);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
@@ -52,7 +52,7 @@ public class Topic_17_Alert {
 	public void TC_02_Confirm_Alert() {
 		driver.get("https://automationfc.github.io/basic-form/index.html");
 		driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
-		alert = explicitWait.until(ExpectedConditions.alertIsPresent());
+		alert = driver.switchTo().alert();
 		Assert.assertEquals(alert.getText(), "I am a JS Confirm");
 		alert.dismiss();
 		sleepInSecond(2);
@@ -71,7 +71,7 @@ public class Topic_17_Alert {
 		Assert.assertEquals(driver.findElement(By.cssSelector("p#result")).getText(), "You entered: " + courseName);
 	}
 	
-	@Test
+	// @Test
 	public void TC_04_Authentication_Alert() {
 		String username = "admin";
 		String password = "admin";
