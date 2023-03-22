@@ -11,7 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_12_Textbox_Textarea_Exercise {
+public class Topic_10_Textbox_Textarea_Exercise {
 	WebDriver driver;
 	Random rand = new Random();
 	String projectPath = System.getProperty("user.dir");

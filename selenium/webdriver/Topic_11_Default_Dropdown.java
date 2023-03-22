@@ -13,7 +13,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_13_Default_Dropdown {
+public class Topic_11_Default_Dropdown {
 	WebDriver driver;
 	Random rand = new Random();
 	String projectPath = System.getProperty("user.dir");

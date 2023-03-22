@@ -11,7 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_32_Selenium_Wait_Static_Wait {
+public class Topic_29_Selenium_Wait_Implicit_Wait {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
@@ -32,37 +32,29 @@ public class Topic_32_Selenium_Wait_Static_Wait {
 
 	@Test
 	public void TC_01_Not_Enough_Time() {
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		driver.get("https://automationfc.github.io/dynamic-loading/");
 		driver.findElement(By.cssSelector("div#start>button")).click();
-		sleepInSecond(2);
 		
 		Assert.assertTrue(driver.findElement(By.cssSelector("div#finish>h4")).isDisplayed());
 	}
 
 	@Test
 	public void TC_02_Enough_Time() {
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.get("https://automationfc.github.io/dynamic-loading/");
 		driver.findElement(By.cssSelector("div#start>button")).click();
-		sleepInSecond(5);
 		
 		Assert.assertTrue(driver.findElement(By.cssSelector("div#finish>h4")).isDisplayed());
 	}
 	
 	@Test
 	public void TC_03_More_Time() {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("https://automationfc.github.io/dynamic-loading/");
 		driver.findElement(By.cssSelector("div#start>button")).click();
-		sleepInSecond(8);
 		
 		Assert.assertTrue(driver.findElement(By.cssSelector("div#finish>h4")).isDisplayed());
-	}
-
-	public void sleepInSecond(long timeout) {
-		try {
-			Thread.sleep(timeout * 1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@AfterClass

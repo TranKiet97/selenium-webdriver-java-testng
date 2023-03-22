@@ -15,7 +15,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_28_Upload_File_AutoIT {
+public class Topic_26_Upload_File_AutoIT {
 	WebDriver driver;
 	JavascriptExecutor jsExecutor;
 	String projectPath = System.getProperty("user.dir");

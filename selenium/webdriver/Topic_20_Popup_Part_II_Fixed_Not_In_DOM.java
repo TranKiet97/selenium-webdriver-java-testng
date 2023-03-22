@@ -12,7 +12,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_22_Popup_Part_II_Fixed_Not_In_DOM {
+public class Topic_20_Popup_Part_II_Fixed_Not_In_DOM {
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");

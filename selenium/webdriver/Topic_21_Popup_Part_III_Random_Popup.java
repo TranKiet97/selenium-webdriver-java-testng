@@ -11,7 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Topic_23_Popup_Part_III_Random_Popup {
+public class Topic_21_Popup_Part_III_Random_Popup {
 	WebDriver driver;
 	Random rand = new Random();
 	String projectPath = System.getProperty("user.dir");
