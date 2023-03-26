@@ -64,11 +64,6 @@ public class Topic_33_Wait_Fluent {
 		});
 	}
 
-	@Test
-	public void TC_03_() {
-
-	}
-
 	public WebElement findElement(String xpathLocator, long timeout, long pollingTime) {
 		fluentDriver = new FluentWait<WebDriver>(driver);
 		// Set Timeout and Frequency
