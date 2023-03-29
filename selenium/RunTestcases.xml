@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="Suite">
+	<test name="Tiki App">
+		<groups>
+			<run>
+				<include name="product"></include>
+			</run>
+		</groups>
+		<packages>
+			<package name="tiki.admin" />
+		</packages>
+	</test>
+</suite>
