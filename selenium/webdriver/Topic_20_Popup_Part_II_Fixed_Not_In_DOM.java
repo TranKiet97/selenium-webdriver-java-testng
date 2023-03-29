@@ -6,7 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -14,6 +16,7 @@ import org.testng.annotations.Test;
 
 public class Topic_20_Popup_Part_II_Fixed_Not_In_DOM {
 	WebDriver driver;
+	WebDriverWait explicitWait;
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
 
@@ -21,14 +24,15 @@ public class Topic_20_Popup_Part_II_Fixed_Not_In_DOM {
 	public void beforeClass() {
 		if (osName.contains("Windows")) {
 			// Window
-			System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver111.exe");
 		} else {
 			// MAC OS 
-			System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver");
+			System.setProperty("webdriver.chrome.driver", projectPath + "/browserDrivers/chromedriver111");
 		}
 
 		driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		explicitWait = new WebDriverWait(driver, 10);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 
@@ -38,11 +42,11 @@ public class Topic_20_Popup_Part_II_Fixed_Not_In_DOM {
 		By signinPopup = By.cssSelector("div[class*='ReactModal__Content']");
 		Assert.assertEquals(driver.findElements(signinPopup).size(), 0);
 		driver.findElement(By.cssSelector("div[data-view-id*='header_account']")).click();
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(signinPopup));
 		Assert.assertTrue(driver.findElement(signinPopup).isDisplayed());
-		sleepInSecond(2);
 		driver.findElement(By.xpath("//button[text()='Tiếp Tục']")).click();
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.error-mess")));
 		Assert.assertEquals(driver.findElement(By.cssSelector("span.error-mess")).getText(), "Số điện thoại không được để trống");
-		sleepInSecond(2);
 		driver.findElement(By.cssSelector("img.close-img")).click();
 		Assert.assertEquals(driver.findElements(signinPopup).size(), 0);
 	}
@@ -55,6 +59,7 @@ public class Topic_20_Popup_Part_II_Fixed_Not_In_DOM {
 		Assert.assertEquals(driver.findElements(createNewAccPopup).size(), 0);
 		
 		driver.findElement(By.xpath("//a[text()='Create new account']")).click();
+		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(createNewAccPopup));
 		Assert.assertEquals(driver.findElements(createNewAccPopup).size(), 1);
 		
 		driver.findElement(By.cssSelector("input[name='firstname']")).sendKeys("Tran");
@@ -65,10 +70,8 @@ public class Topic_20_Popup_Part_II_Fixed_Not_In_DOM {
 		new Select(driver.findElement(By.id("month"))).selectByVisibleText("Aug");
 		new Select(driver.findElement(By.id("year"))).selectByVisibleText("2000");
 		driver.findElement(By.xpath("//label[text()='Female']/following-sibling::input")).click();
-		sleepInSecond(2);
-		
 		driver.findElement(By.xpath("//div[text()='Sign Up']/parent::div/preceding-sibling::img")).click();
-		sleepInSecond(2);
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(createNewAccPopup));
 		
 		Assert.assertEquals(driver.findElements(createNewAccPopup).size(), 0);
 	}
