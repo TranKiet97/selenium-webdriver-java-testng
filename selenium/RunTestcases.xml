@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite parallel="false" name="Suite">
+<suite parallel="tests" name="Suite" thread-count="3">
+	<!-- 
 	<test name="Tiki App">
 		<groups>
 			<run>
@@ -10,4 +11,31 @@
 			<package name="tiki.admin" />
 		</packages>
 	</test>
+	--> 
+	
+	<!-- Global Var -->
+	<parameter name="environment" value="live" />
+	
+	<test name="Run on FIREFOX">
+		<!-- Local Var -->
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="testng.Topic_04_Parameter_Browser_Env" />
+		</classes>
+	</test>
+	
+	<test name="Run on CHROME">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="testng.Topic_04_Parameter_Browser_Env" />
+		</classes>
+	</test>
+	
+	<test name="Run on EDGE">
+		<parameter name="browser" value="edge" />
+		<classes>
+			<class name="testng.Topic_04_Parameter_Browser_Env" />
+		</classes>
+	</test>
+	
 </suite>
