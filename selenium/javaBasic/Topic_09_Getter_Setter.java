@@ -1,4 +1,4 @@
-package javaSDET;
+package javaBasic;
 
 public class Topic_09_Getter_Setter {
 	

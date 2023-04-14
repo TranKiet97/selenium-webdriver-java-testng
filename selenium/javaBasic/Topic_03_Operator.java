@@ -1,4 +1,4 @@
-package javaSDET;
+package javaBasic;
 
 public class Topic_03_Operator {
 

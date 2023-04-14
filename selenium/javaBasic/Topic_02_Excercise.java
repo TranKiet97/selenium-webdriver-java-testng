@@ -1,4 +1,4 @@
-package javaSDET;
+package javaBasic;
 
 import org.testng.annotations.Test;
 

@@ -1,4 +1,4 @@
-package javaSDET;
+package javaBasic;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package javaSDET;
+package javaBasic;
 
 public class Topic_10_Access_Modifier {
 
