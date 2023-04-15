@@ -1,6 +1,6 @@
 package javaOOP;
 
-public class Topic_13_CarOOP {
+public class Topic_01_Class_Object {
 	private String carCompany;
 	private String carType;
 	private String fuelType;
@@ -8,7 +8,7 @@ public class Topic_13_CarOOP {
 	private Double carPrice;
 	
 	// Tạo constructor
-	protected Topic_13_CarOOP(String carCompany, String carType, String fuelType, Float mileAge, Double carPrice) {
+	protected Topic_01_Class_Object(String carCompany, String carType, String fuelType, Float mileAge, Double carPrice) {
 		this.carCompany = carCompany;
 		this.carType = carType;
 		this.fuelType = fuelType;
@@ -56,10 +56,10 @@ public class Topic_13_CarOOP {
 	}
 	
 	public static void main(String[] args) {
-		Topic_13_CarOOP honda = new Topic_13_CarOOP("Honda", "Lead", "Petrol", 150f, 50000000d);
+		Topic_01_Class_Object honda = new Topic_01_Class_Object("Honda", "Lead", "Petrol", 150f, 50000000d);
 		honda.showCarInfor();
 		
-		Topic_13_CarOOP toyota = new Topic_13_CarOOP("Toyota", "Camry", "Diasel", 250f, 1250000000d);
+		Topic_01_Class_Object toyota = new Topic_01_Class_Object("Toyota", "Camry", "Diasel", 250f, 1250000000d);
 		toyota.showCarInfor();
 	}
 }
